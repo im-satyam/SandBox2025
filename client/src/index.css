@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+.hbox {
+    width: 100%;
+    min-height: 333px;
+}

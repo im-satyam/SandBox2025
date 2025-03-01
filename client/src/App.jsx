@@ -78,25 +78,13 @@ const App = () => {
     {
       path: "/login",
       element: <>
-        <div className='flex flex-col min-h-screen'>
-          <Navbar />
-          <div className='flex flex-1'>
-            <Login />
-          </div>
-          <Footer />
-        </div>
+        <Login />
       </>
     },
     {
       path: "/register",
       element: <>
-        <div className='flex flex-col min-h-screen'>
-          <Navbar />
-          <div className='flex flex-1'>
-            <Register />
-          </div>
-          <Footer />
-        </div>
+        <Register />
       </>
     },
     {

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { MessageSquareText, ArrowDown, SendHorizonal } from 'lucide-react';
 
 const Chatbot = () => {
-    const [isChatting, setIsChatting] = useState(true);
+    const [isChatting, setIsChatting] = useState(false);
     const [messages, setMessages] = useState([]);
 
     const {

@@ -20,11 +20,20 @@ export const handleCheck = async ({ endpoint, data, changeload, setResult, phish
             ...(endpoint === "phishing"
                 ? { malicious: response.data.isMalicious }
                 : { pwned: response.data.pwned }),
-            message: response.data.message
+            message: response.data.message,
         });
+
+        console.log(response.data.details.sources);
+
     } catch (error) {
         console.error("Fetch error:", error.response?.data || error.message);
     } finally {
         changeload(false);
+
+        if (endpoint === "email") {
+            console.log(response.data.details.sources);
+
+            return (response.data.details.sources);
+        }
     }
 };

@@ -2,10 +2,12 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { handleCheck } from '../utils/handleCheck';
+import axios from "axios";
 
 const Email = () => {
 
     const [result, setResult] = useState({ res: false, pwned: '', message: '' })
+    const [breached, setBreached] = useState([]);
     const [prevEmail, setPrevEmail] = useState("");
     const [isloading, setIsloading] = useState(false)
 
@@ -20,7 +22,7 @@ const Email = () => {
 
     useEffect(() => {
         if (emailInput.length < prevEmail.length) {
-            setResult({ res: false, pwned: false, message: '' });
+            setResult({ res: false, pwned: '', message: '' });
         }
         setPrevEmail(emailInput);
     }, [emailInput]);
@@ -29,17 +31,24 @@ const Email = () => {
         setIsloading(state)
     }
 
-    const checkEmail = (data) => {
-        handleCheck({
+    const checkEmail = async (data) => {
+        let brch = await handleCheck({
             endpoint: "email",
             data,
             changeload: changeLoading,
-            setResult
+            setResult,
         });
+        console.log(brch)
     }
 
     return (
-        <div className="mainContent w-full px-4">
+        <div className="mainContent w-full px-4 text-center">
+            <div className='text-xl font-semibold'>
+                Email Breach Police!
+            </div>
+            <div className='text-sm text-gray-500'>
+                check whether your email has been compromised or not
+            </div>
             <div className="contentInput">
                 <form
                     action="POST"
@@ -69,6 +78,7 @@ const Email = () => {
                     </div>
                 </form>
             </div>
+            <div></div>
 
             <div className="contentResult flex flex-col items-center text-center my-3">
                 {result.res ? (
