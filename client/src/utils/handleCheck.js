@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const handleCheck = async ({ endpoint, data, changeload, setResult, phishmode }) => {
     try {
+        const userToken = localStorage.getItem("userToken");
         changeload(true);
 
         let url = `http://localhost:8080/v1/${endpoint}`;
@@ -11,7 +12,7 @@ export const handleCheck = async ({ endpoint, data, changeload, setResult, phish
             url = phishmode === "site" ? "http://localhost:8080/v1/url" : "http://localhost:8080/v1/pmail";
         }
 
-        const response = await axios.post(url, data);
+        const response = await axios.post(url, data, { headers: { Authorization: `Bearer ${userToken}` } });
 
         // Process response based on the type of check
         setResult({

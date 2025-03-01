@@ -3,10 +3,11 @@ import { handleCheck } from '../utils/handleCheck';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-const Phishing = (props) => {
+const Phishing = () => {
 
     const [result, setResult] = useState({ res: false, malicious: false, message: '' })
     const [phishmode, setPhishmode] = useState("site")
+    const [isloading, setIsloading] = useState(false)
 
     const {
         register,
@@ -15,25 +16,19 @@ const Phishing = (props) => {
         watch,
     } = useForm();
 
-    useEffect(() => {
-        if (props.mode) {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-        }
-    }, [props.mode]);
-
     const handleModeChange = (mode) => {
         setPhishmode(mode)
+    }
+
+    const changeLoading = (state) => {
+        setIsloading(state)
     }
 
     const checkPhish = (data) => {
         handleCheck({
             endpoint: "phishing",
             data,
-            changeload: props.changeload,
+            changeload: changeLoading,
             setResult,
             phishmode
         });
@@ -85,8 +80,8 @@ const Phishing = (props) => {
                     <div className="flex justify-center">
                         <button
                             type="submit"
-                            className={`px-4 py-2 ${props.loading ? "bg-blue-200 hover:cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600 hover:cursor-pointer"} text-white rounded-lg text-sm font-medium transition-all shadow-md`}
-                            disabled={props.loading}
+                            className={`px-4 py-2 ${isloading ? "bg-blue-200 hover:cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600 hover:cursor-pointer"} text-white rounded-lg text-sm font-medium transition-all shadow-md`}
+                            disabled={isloading}
                         >
                             Check
                         </button>
