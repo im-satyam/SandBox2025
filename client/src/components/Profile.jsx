@@ -9,6 +9,7 @@ const User = () => {
 
     const [name, setName] = useState("Name");
     const [mail, setMail] = useState("user@gmail.com");
+    const [user, setUser] = useState("username");
 
     useEffect(() => {
         fetchUserData();
@@ -18,14 +19,14 @@ const User = () => {
     const fetchUserData = async () => {
         try {
             const token = localStorage.getItem('userToken');
-            const response = await axios.get("http://localhost:8080/user/current-user", {
+            const response = await axios.get("http://localhost:8080/v1/current-user", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log(response.data);
             setName(response.data.user.name);
             setMail(response.data.user.email);
+            setUser(response.data.user.username);
         } catch (error) {
             console.error("Login error: ", error.response?.data || error.message);
         }
@@ -52,6 +53,9 @@ const User = () => {
                         </div>
                         <div>
                             Email : {mail}
+                        </div>
+                        <div>
+                            Username : {user}
                         </div>
                     </div>
                     <hr className='border-gray-300'></hr>

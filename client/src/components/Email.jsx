@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { handleCheck } from '../utils/handleCheck';
 
-const Email = (props) => {
+const Email = () => {
 
     const [result, setResult] = useState({ res: false, pwned: '', message: '' })
     const [prevEmail, setPrevEmail] = useState("");
+    const [isloading, setIsloading] = useState(false)
 
     const {
         register,
@@ -18,27 +19,21 @@ const Email = (props) => {
     const emailInput = watch("email", "");
 
     useEffect(() => {
-        if (props.mode) {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-        }
-    }, [props.mode]);
-
-    useEffect(() => {
         if (emailInput.length < prevEmail.length) {
             setResult({ res: false, pwned: false, message: '' });
         }
         setPrevEmail(emailInput);
     }, [emailInput]);
 
+    const changeLoading = (state) => {
+        setIsloading(state)
+    }
+
     const checkEmail = (data) => {
         handleCheck({
             endpoint: "email",
             data,
-            changeload: props.changeload,
+            changeload: changeLoading,
             setResult
         });
     }
@@ -66,8 +61,8 @@ const Email = (props) => {
                     <div className="flex justify-center">
                         <button
                             type="submit"
-                            className={`px-4 py-2 ${props.loading ? "bg-blue-200 hover:cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600 hover:cursor-pointer"} text-white rounded-lg text-sm font-medium transition-all shadow-md`}
-                            disabled={props.loading}
+                            className={`px-4 py-2 ${isloading ? "bg-blue-200 hover:cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600 hover:cursor-pointer"} text-white rounded-lg text-sm font-medium transition-all shadow-md`}
+                            disabled={isloading}
                         >
                             Check
                         </button>
