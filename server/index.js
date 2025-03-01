@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 app.use("/v1", require("./router/authRouter"));
 app.use("/v1", require("./router/emailRouter"));
+app.use("/v1", require("./router/passwordRouter"));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
