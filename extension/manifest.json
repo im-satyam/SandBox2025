@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "CyberStop",
+    "version": "1.0",
+    "description": "A Chrome extension",
+    "permissions": [
+        "storage",
+        "tabs",
+        "identity",
+        "background"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "host_permissions": [
+        "http://localhost:5000/*",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "action": {
+        "default_popup": "index.html"
+    }
+}
