@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
 
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -58,13 +60,24 @@ const Login = () => {
 
                                 <label htmlFor="password">Enter Your Password:</label>
 
-                                <input
-                                    type="password"
-                                    placeholder='Registered Password'
-                                    {...register("password", { minLength: { value: 4, message: "Min length of password is 4" } })} className='border-2 border-gray-200 rounded-md px-1 py-0.5'
-                                    name='password' />
-
-                                {errors.password && <div className='text-red-600 text-xs'>{errors.password.message}</div>}
+                                <div className="relative w-full">
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Registered Password"
+                                        {...register("password", { minLength: { value: 6, message: "Min length of password is 6" } })}
+                                        className="border-2 border-gray-200 rounded-md px-3 py-2 w-full pr-10" // Add padding-right for icon space
+                                        name="password"
+                                    />
+                                    {errors.password && <div className='text-red-600 text-xs'>{errors.password.message}</div>}
+                                    {/* Eye icon button */}
+                                    <button
+                                        type="button"
+                                        className="absolute inset-y-0 right-3 flex items-center text-gray-600"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                    >
+                                        {showPassword ? <Eye /> : <EyeOff />}
+                                    </button>
+                                </div>
                             </div>
                             <hr className='border-gray-300'></hr>
                             <div>
