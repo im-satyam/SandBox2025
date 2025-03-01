@@ -15,6 +15,7 @@ app.use("/v1", require("./router/authRouter"));
 app.use("/v1", require("./router/emailRouter"));
 app.use("/v1", require("./router/passwordRouter"));
 app.use("/v1", require("./router/urlRouter"));
+app.use("/v1", require("./router/mailRouter"));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
