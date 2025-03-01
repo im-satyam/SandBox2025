@@ -7,10 +7,9 @@ const emailCheckController = async (req, res) => {
   if (!email) {
     return res.status(400).json({ error: "Email is required" });
   }
-  const realEmail = getRealEmail(email);
   try {
     const response = await axios.get(
-      `https://leakcheck.net/api/public?check=${encodeURIComponent(realEmail)}`
+      `https://leakcheck.net/api/public?check=${encodeURIComponent(email)}`
     );
     const pwned = response.data.found;
     return res.json({
