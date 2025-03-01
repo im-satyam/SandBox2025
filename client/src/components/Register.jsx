@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
@@ -12,8 +12,15 @@ const Register = () => {
         formState: { errors },
     } = useForm();
 
+    const navigate = useNavigate();
+
     const handleRegister = async (data) => {
-        await axios.post("http://localhost:8080/v1/register", data)
+        const response = await axios.post("http://localhost:8080/v1/register", data)
+        console.log(response.data);
+        let curToken = response.data.token;
+        console.log(curToken);
+        // localStorage.setItem('userToken', curToken)
+        navigate('/home', { replace: true })
     }
 
     return (
