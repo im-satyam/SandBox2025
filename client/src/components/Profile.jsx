@@ -40,39 +40,31 @@ const User = () => {
 
     return (
         <>
-            <div className='w-screen h-screen flex justify-center items-center bg-white'>
-                <div className="container flex flex-col gap-5 w-md min-h-4/5 relative p-5 rounded-4xl border-2 border-gray-200 backdrop-blur-xl shadow-xl">
-                    <div className='flex flex-col gap-1 items-center'>
-                        <div className='text-2xl font-bold'>Welcome Back User!</div>
-                        <div className='text-sm font-semibold text-gray-500'>Here are your registered details:</div>
-                    </div>
-                    <hr className='border-gray-300'></hr>
-                    <div className='flex flex-col gap-1'>
-                        <div>
-                            Name : {name}
-                        </div>
-                        <div>
+            <div className='flex flex-col w-screen items-center pt-5'>
+                <div className="p-6 flex justify-center items-center gap-15 w-fit">
+                    <div className="flex flex-col justify-center">
+                        <h2 className="text-xl font-bold text-gray-900">
+                            Full Name : {name}
+                        </h2>
+                        <h3 className="text-md text-gray-700">
+                            @username : {user}
+                        </h3>
+                        <p className="text-sm text-gray-600">
                             Email : {mail}
-                        </div>
-                        <div>
-                            Username : {user}
-                        </div>
+                        </p>
                     </div>
-                    <hr className='border-gray-300'></hr>
-                    <motion.div className='flex flex-col justify-center items-center'
-                        initial={{ rotate: 180, scale: 0 }}
-                        animate={{ rotate: 0, scale: 1 }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 200,
-                            damping: 20
-                        }} >
-                        <button onClick={handleSignOut} className='w-full bg-sky-600 text-white rounded-4xl font-bold hover:cursor-pointer transition-all scale-95 hover:scale-[1]'>Sign Out</button>
-                        <div className='text-sm font-semibold text-gray-500'>Sign out of your acoount</div>
+                    <div className="relative w-24 h-24 ml-auto">
+                        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="15" stroke="green" strokeWidth="5" fill="none"></circle>
+                        </svg>
+                    </div>
+                </div>
 
-                    </motion.div>
+                <div className="details">
+
                 </div>
             </div>
+
         </>
     )
 }
