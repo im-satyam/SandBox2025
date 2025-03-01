@@ -1,9 +1,12 @@
 const express = require("express");
+const cron = require("node-cron");
+
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
 const connectDB = require("./db");
+const emailAlert = require("./controllers/alertController");
 const app = express();
 const port = process.env.PORT;
 connectDB();
@@ -20,7 +23,10 @@ app.use("/v1", require("./router/mailRouter"));
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-
+cron.schedule("*/1 * * * *", async () => {
+  console.log("Running breach monitoring...");
+  await emailAlert();
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
