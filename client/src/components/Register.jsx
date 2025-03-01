@@ -21,7 +21,7 @@ const Register = () => {
         console.log(response.data);
         let curToken = response.data.token;
         console.log(curToken);
-        // localStorage.setItem('userToken', curToken)
+        localStorage.setItem('userToken', curToken)
         navigate('/home', { replace: true })
     }
 
@@ -79,7 +79,6 @@ const Register = () => {
                                         {...register("password", { minLength: { value: 6, message: "Min length of password is 6" } })} className='border-2 border-gray-200 rounded-md px-1 py-0.5 w-full'
                                         name='password' />
 
-                                    {errors.password && <div className='text-red-600 text-xs'>{errors.password.message}</div>}
 
                                     <button
                                         type="button"
@@ -89,6 +88,7 @@ const Register = () => {
                                         {showPassword ? <Eye /> : <EyeOff />}
                                     </button>
                                 </div>
+                                {errors.password && <div className='text-red-600 text-xs'>{errors.password.message}</div>}
                             </div>
                             <hr className='border-gray-300'></hr>
                             <div>

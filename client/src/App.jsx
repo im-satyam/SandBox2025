@@ -10,6 +10,7 @@ import Password from './components/Password'
 import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
+import Chatbot from './components/Chatbot'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -31,6 +32,7 @@ const App = () => {
         <div className='flex flex-col min-h-screen'>
           <Navbar />
           <div className='flex flex-1'>
+            <Chatbot />
             <Home />
           </div>
           <Footer />

@@ -8,6 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false);
+    const [isError, setIsError] = useState(false)
+    const [error, seterror] = useState("")
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,6 +34,8 @@ const Login = () => {
             navigate('/home', { replace: true })
         } catch (error) {
             console.error("Login error: ", error.response?.data || error.message);
+            setIsError(true)
+            seterror("Invalid Credentials!");
         }
     }
 
@@ -80,6 +84,7 @@ const Login = () => {
                                 </div>
                             </div>
                             <hr className='border-gray-300'></hr>
+                            {isError ? <div className='text-red-600 text-xs'>{error}</div> : ""}
                             <div>
                                 <button type='submit' className='w-full bg-sky-600 text-white rounded-4xl font-bold hover:cursor-pointer transition-all scale-95 hover:scale-[1]'>Login</button>
                             </div>

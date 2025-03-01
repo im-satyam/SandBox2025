@@ -35,7 +35,7 @@ const User = () => {
 
     const handleSignOut = () => {
         localStorage.removeItem('userToken');
-        navigate('/login')
+        navigate('/')
     }
 
     return (
@@ -44,7 +44,7 @@ const User = () => {
                 <div className="p-6 flex justify-center items-center gap-15 w-fit">
                     <div className="flex flex-col justify-center">
                         <h2 className="text-xl font-bold text-gray-900">
-                            Full Name : {name}
+                            {name}
                         </h2>
                         <h3 className="text-md text-gray-700">
                             @username : {user}
@@ -60,8 +60,14 @@ const User = () => {
                     </div>
                 </div>
 
-                <div className="details">
 
+                <div className='flex flex-col justify-center items-center py-5'>
+                    <button onClick={handleSignOut} className='w-full bg-sky-600 text-white rounded-4xl font-bold hover:cursor-pointer transition-all scale-95 hover:scale-[1]'>Sign Out</button>
+                    <div className='text-sm font-semibold text-gray-500'>Sign out of your acoount</div>
+                </div>
+
+                <div className="details">
+                    Details from user
                 </div>
             </div>
 
