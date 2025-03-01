@@ -11,7 +11,7 @@ const Login = () => {
     useEffect(() => {
         const tkn = localStorage.getItem('userToken');
         if (tkn) {
-            navigate('/');
+            navigate('/home');
         }
     }, [navigate]);
 
@@ -27,7 +27,7 @@ const Login = () => {
             const response = await axios.post("http://localhost:8080/v1/login", data);
             let curToken = response.data.token;
             localStorage.setItem('userToken', curToken)
-            navigate('/', { replace: true })
+            navigate('/home', { replace: true })
         } catch (error) {
             console.error("Login error: ", error.response?.data || error.message);
         }

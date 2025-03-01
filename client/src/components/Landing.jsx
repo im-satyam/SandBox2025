@@ -1,7 +1,18 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 
 const Landing = () => {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const tkn = localStorage.getItem('userToken');
+        if (tkn) {
+            navigate('/home');
+        }
+    }, [navigate]);
+
     return (
         <>
             <div className="flex flex-col">
