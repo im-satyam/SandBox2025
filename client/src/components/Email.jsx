@@ -7,6 +7,7 @@ const Email = () => {
     const [result, setResult] = useState({ res: false, pwned: '', message: '' });
     const [prevEmail, setPrevEmail] = useState("");
     const [isloading, setIsloading] = useState(false);
+    const [breachSources, setBreachSources] = useState([]);
 
     const {
         register,
@@ -29,13 +30,13 @@ const Email = () => {
     };
 
     const checkEmail = async (data) => {
-        let brch = await handleCheck({
+        const sources = await handleCheck({
             endpoint: "email",
             data,
             changeload: changeLoading,
             setResult,
         });
-        console.log(brch);
+        setBreachSources(sources || []);
     };
 
     return (
@@ -158,6 +159,25 @@ const Email = () => {
                         >
                             {result.message}
                         </motion.div>
+
+                        {/* Render breach sources if available */}
+                        {breachSources.length > 0 && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.5, delay: 0.4 }}
+                                className="mt-4"
+                            >
+                                <div className="text-sm font-semibold">Breach Sources:</div>
+                                <ul className="text-xs text-gray-600">
+                                    {breachSources.map((source, index) => (
+                                        <li key={index}>
+                                            <strong>{source.name}</strong> - {source.date}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </motion.div>
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>

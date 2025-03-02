@@ -1,6 +1,8 @@
 import axios from "axios";
 
 export const handleCheck = async ({ endpoint, data, changeload, setResult, phishmode }) => {
+    let response; // Declare response outside the try block
+
     try {
         const userToken = localStorage.getItem("userToken");
         changeload(true);
@@ -12,7 +14,7 @@ export const handleCheck = async ({ endpoint, data, changeload, setResult, phish
             url = phishmode === "site" ? "http://localhost:8080/v1/url" : "http://localhost:8080/v1/pmail";
         }
 
-        const response = await axios.post(url, data, { headers: { Authorization: `Bearer ${userToken}` } });
+        response = await axios.post(url, data, { headers: { Authorization: `Bearer ${userToken}` } });
 
         // Process response based on the type of check
         setResult({
@@ -30,10 +32,9 @@ export const handleCheck = async ({ endpoint, data, changeload, setResult, phish
     } finally {
         changeload(false);
 
-        if (endpoint === "email") {
+        if (endpoint === "email" && response) { // Check if response is defined
             console.log(response.data.details.sources);
-
-            return (response.data.details.sources);
+            return response.data.details.sources;
         }
     }
 };
