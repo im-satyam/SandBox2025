@@ -47,7 +47,7 @@ const Phishing = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="mainContent w-full px-4 overflow-hidden"
+            className="mainContent w-full px-4 overflow-hidden my-5"
         >
             {/* Mode Selection Buttons */}
             <div className="flex justify-center gap-4 mb-4">
@@ -85,14 +85,14 @@ const Phishing = () => {
                                 type="url"
                                 placeholder="Website to check"
                                 {...register("url", { required: "URL is required" })}
-                                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all w-full"
+                                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition-all w-full"
                                 name="url"
                             />
                         ) : (
                             <textarea
                                 placeholder="Mail Content to check"
                                 {...register("mailcon", { required: "Content is required" })}
-                                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all w-full h-20"
+                                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition-all w-full h-20"
                                 name="mailcon"
                             />
                         )}

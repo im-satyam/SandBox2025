@@ -105,7 +105,7 @@ const Landing = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.4 }}
-                className='rounded-full p-1 w-1/2 border-2 border-green-700 my-5 h-32 text-center flex justify-center items-center'
+                className='rounded-full p-1 w-1/2 border-2 border-green-700 my-5 h-32 text-center flex justify-center items-center text-xl'
             >
                 {mode === "email"
                     ? "The website allows users to check if their email id has been compromised or not. It checks whether the email id has been breached or not."

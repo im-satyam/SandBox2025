@@ -44,7 +44,7 @@ const Password = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="mainContent w-full px-4 text-center overflow-hidden"
+            className="mainContent w-full px-4 text-center overflow-hidden my-5"
         >
             <motion.div
                 initial={{ y: -20, opacity: 0 }}
@@ -85,7 +85,7 @@ const Password = () => {
                             type={showPassword ? "text" : "password"}
                             placeholder="Password to check"
                             {...register("password", { required: "Password is required" })}
-                            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all w-full"
+                            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition-all w-full"
                             name="password"
                         />
                         {/* Eye icon button with animation */}

@@ -43,7 +43,7 @@ const Email = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="mainContent w-full px-4 text-center overflow-hidden"
+            className="mainContent w-full px-4 text-center overflow-hidden my-5"
         >
             <motion.div
                 initial={{ y: -20, opacity: 0 }}
@@ -84,7 +84,7 @@ const Email = () => {
                             type="email"
                             placeholder="Email to check"
                             {...register("email", { required: "Email is required" })}
-                            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition-all"
                             name="email"
                         />
                         {errors.email && (
