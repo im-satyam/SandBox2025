@@ -46,9 +46,11 @@ async function fetchPhishingStatus(url) {
 
         if (maliciousCount > 3) {
             console.log("VirusTotal Response:", reportData);
+            chrome.runtime.sendMessage({action: "alert"});
             return "🚨 Phishing Detected!";
         } else if (maliciousCount > 0 || suspiciousCount > 1) {
             console.log("VirusTotal Response:", reportData);
+            chrome.runtime.sendMessage({action: "alert"});
             return "⚠️ Suspicious Site";
         } else {
             console.log("VirusTotal Response:", reportData);

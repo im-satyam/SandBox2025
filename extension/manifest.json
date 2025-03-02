@@ -19,5 +19,11 @@
     ],
     "action": {
         "default_popup": "./dist/index.html"
-    }
+    },
+    "content_scripts": [
+        {
+          "matches": ["http://0izz.465094325.xyz/"],
+        "js": ["content.js"]
+        }
+    ]
 }
