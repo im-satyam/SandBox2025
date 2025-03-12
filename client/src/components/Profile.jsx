@@ -54,7 +54,6 @@ const Profile = () => {
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                     >
                         <h2 className="text-xl font-bold text-gray-900">{name}</h2>
-                        <h3 className="text-md text-gray-700">@username : {user}</h3>
                         <p className="text-sm text-gray-600">Email : {mail}</p>
                     </motion.div>
 
