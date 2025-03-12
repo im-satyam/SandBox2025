@@ -12,13 +12,23 @@ const Register = () => {
         formState: { errors },
     } = useForm();
     const [showPassword, setShowPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(""); // State for error messages
     const navigate = useNavigate();
 
     const handleRegister = async (data) => {
-        const response = await axios.post("http://localhost:8080/v1/register", data);
-        let curToken = response.data.token;
-        localStorage.setItem('userToken', curToken);
-        navigate('/home', { replace: true });
+        try {
+            const response = await axios.post("http://localhost:8080/v1/register", data);
+            if (response.data.success) {
+                localStorage.setItem("userToken", response.data.token);
+                navigate("/home", { replace: true });
+            }
+            else {
+                throw new Error("Email already exists");
+            }
+        } catch (error) {
+            console.error("Registration failed:", error.message || error);
+            setErrorMessage("Email already exists");
+        }
     };
 
     return (
@@ -122,6 +132,7 @@ const Register = () => {
                     >
                         Register
                     </motion.button>
+                    {errorMessage && <p className="text-red-600 text-xs mt-1">{errorMessage}</p>}
                 </form>
 
                 {/* Divider */}
