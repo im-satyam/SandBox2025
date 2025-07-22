@@ -27,10 +27,7 @@ app.use("/v1", require("./router/chatBotRouter"));
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-cron.schedule("*/1 * * * *", async () => {
-  console.log("Running breach monitoring...");
-  await emailAlert();
-});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
