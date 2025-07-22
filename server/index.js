@@ -11,7 +11,10 @@ const app = express();
 const port = process.env.PORT;
 connectDB();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "https://hack2a.github.io",
+}));
+app.options("*", cors());
 app.use(bodyParser.json());
 
 app.use("/v1", require("./router/authRouter"));
